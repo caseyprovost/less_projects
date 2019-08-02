@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    let(:project) { described_class.new }
+
+    it 'requires a name' do
+      expect(project).not_to be_valid
+      expect(project.errors["name"]).to include("can't be blank")
+    end
+  end
 end

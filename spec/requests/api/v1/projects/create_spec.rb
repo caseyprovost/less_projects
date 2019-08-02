@@ -6,9 +6,8 @@ RSpec.describe "projects#create", type: :request do
   end
 
   describe 'basic create' do
-    let(:params) do
-      attributes_for(:project)
-    end
+    let(:params) { attributes_for(:project) }
+
     let(:payload) do
       {
         data: {
@@ -20,10 +19,8 @@ RSpec.describe "projects#create", type: :request do
 
     it 'works' do
       expect(ProjectResource).to receive(:build).and_call_original
-      expect {
-        make_request
-        expect(response.status).to eq(201), response.body
-      }.to change { Project.count }.by(1)
+      expect { make_request }.to change { Project.count }.by(1)
+      expect(response.status).to eq(201)
     end
   end
 end
