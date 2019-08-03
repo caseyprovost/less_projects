@@ -14,19 +14,17 @@ RSpec.describe "projects#update", type: :request do
           id: project.id.to_s,
           type: 'projects',
           attributes: {
-            # ... your attrs here
+            name: "new name"
           }
         }
       }
     end
 
-    # Replace 'xit' with 'it' after adding attributes
-    xit 'updates the resource' do
+    it 'updates the resource' do
       expect(ProjectResource).to receive(:find).and_call_original
-      expect {
-        make_request
-        expect(response.status).to eq(200), response.body
-      }.to change { project.reload.attributes }
+      make_request
+      expect(response.status).to eq(200), response.body
+      expect(project.reload.name).to eq("new name")
     end
   end
 end
