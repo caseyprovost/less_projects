@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_174353) do
+ActiveRecord::Schema.define(version: 2019_08_03_182600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,4 +24,23 @@ ActiveRecord::Schema.define(version: 2019_08_02_174353) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "todo_list_items", force: :cascade do |t|
+    t.bigint "todo_list_id", null: false
+    t.string "content", null: false
+    t.boolean "complete", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["todo_list_id"], name: "index_todo_list_items_on_todo_list_id"
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_todo_lists_on_project_id"
+  end
+
+  add_foreign_key "todo_list_items", "todo_lists"
+  add_foreign_key "todo_lists", "projects"
 end

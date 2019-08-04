@@ -8,7 +8,7 @@ RSpec.describe "projects#destroy", type: :request do
   describe 'basic destroy' do
     let!(:project) { create(:project) }
 
-    it 'updates the resource' do
+    it 'destroys the resource' do
       expect(ProjectResource).to receive(:find).and_call_original
       make_request
       expect(response.status).to eq(200)

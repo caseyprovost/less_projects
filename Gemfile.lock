@@ -91,7 +91,7 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
-    faker (1.9.6)
+    faker (2.1.0)
       i18n (>= 0.7)
     ffi (1.11.1)
     globalid (0.4.2)
@@ -212,6 +212,8 @@ GEM
     rspec-support (3.5.0)
     ruby_dep (1.5.0)
     spring (2.1.0)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -240,7 +242,7 @@ DEPENDENCIES
   byebug
   database_cleaner (~> 1.6)
   factory_bot_rails (~> 4.0)
-  faker (~> 1.7)
+  faker
   graphiti
   graphiti-rails
   graphiti_spec_helpers
@@ -252,6 +254,7 @@ DEPENDENCIES
   responders (~> 2.4)
   rspec-rails (~> 3.5.2)
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
   vandal_ui

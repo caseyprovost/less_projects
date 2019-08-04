@@ -46,11 +46,14 @@ gem 'graphiti-rails'
 gem 'vandal_ui'
 gem 'kaminari', '~> 1.0'
 gem 'responders', '~> 2.4'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_bot_rails', '~> 4.0'
-  gem 'faker', '~> 1.7'
+  gem 'faker'
   gem 'graphiti_spec_helpers'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
