@@ -23,7 +23,50 @@ RSpec.describe ProjectResource, type: :resource do
 
       it 'works' do
         render
-        expect(d.map(&:id)).to eq([project2.id])
+        expect(jsonapi_data.map(&:id)).to eq([project2.id])
+      end
+    end
+
+    context "by status" do
+      before do
+        project1.update!(status: 'active')
+        project2.update!(status: 'archived')
+        params[:filter] = { status: { eq: 'active' } }
+      end
+
+      it "returns the expected projects" do
+        render
+        expect(jsonapi_data.map(&:id)).to eq([project1.id])
+      end
+    end
+
+    context "by multiple status" do
+      before do
+        project1.update!(status: 'active')
+        project2.update!(status: 'archived')
+        project3.touch
+        params[:filter] = { status: { eq: 'active,archived' } }
+      end
+
+      let!(:project3) { create(:project, status: "junk") }
+
+      it "returns the expected projects" do
+        render
+        expect(jsonapi_data.map(&:id)).to eq([project1.id, project2.id])
+      end
+    end
+
+    context "having at least 1 todo list" do
+      before do
+        todo_list.touch
+        params[:filter] = { has_todo_lists: true }
+      end
+
+      let!(:todo_list) { create(:todo_list, project: project1) }
+
+      it "returns the expected projects" do
+        render
+        expect(jsonapi_data.map(&:id)).to eq([project1.id])
       end
     end
   end

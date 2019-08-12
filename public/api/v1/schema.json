@@ -1,8 +1,351 @@
 {
   "resources": [
-
+    {
+      "name": "ProjectResource",
+      "type": "projects",
+      "description": null,
+      "attributes": {
+        "id": {
+          "type": "integer_id",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "name": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "description": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "purpose": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "status": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        }
+      },
+      "extra_attributes": {
+      },
+      "sorts": {
+        "id": {
+        },
+        "name": {
+        },
+        "description": {
+        },
+        "purpose": {
+        },
+        "status": {
+        }
+      },
+      "filters": {
+        "id": {
+          "type": "integer_id",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "has_todo_lists": {
+          "type": "boolean",
+          "operators": [
+            "eq"
+          ],
+          "single": true
+        },
+        "name": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        }
+      },
+      "relationships": {
+        "todo_lists": {
+          "type": "has_many",
+          "description": null,
+          "resource": "TodoListResource"
+        },
+        "todo_list_items": {
+          "type": "has_many",
+          "description": null,
+          "resource": "TodoListItemResource"
+        }
+      }
+    },
+    {
+      "name": "TodoListItemResource",
+      "type": "todo_list_items",
+      "description": null,
+      "attributes": {
+        "id": {
+          "type": "integer_id",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "content": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "complete": {
+          "type": "boolean",
+          "readable": true,
+          "writable": true,
+          "description": null
+        }
+      },
+      "extra_attributes": {
+      },
+      "sorts": {
+        "id": {
+        },
+        "content": {
+        },
+        "complete": {
+        }
+      },
+      "filters": {
+        "id": {
+          "type": "integer_id",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        },
+        "complete": {
+          "type": "boolean",
+          "operators": [
+            "eq"
+          ],
+          "single": true
+        }
+      },
+      "relationships": {
+        "todo_list": {
+          "type": "belongs_to",
+          "description": null,
+          "resource": "TodoListResource"
+        }
+      }
+    },
+    {
+      "name": "TodoListResource",
+      "type": "todo_lists",
+      "description": null,
+      "attributes": {
+        "id": {
+          "type": "integer_id",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "name": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        }
+      },
+      "extra_attributes": {
+      },
+      "sorts": {
+        "id": {
+        },
+        "name": {
+        }
+      },
+      "filters": {
+        "id": {
+          "type": "integer_id",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        }
+      },
+      "relationships": {
+        "project": {
+          "type": "belongs_to",
+          "description": null,
+          "resource": "ProjectResource"
+        },
+        "todo_list_items": {
+          "type": "has_many",
+          "description": null,
+          "resource": "TodoListItemResource"
+        }
+      }
+    }
   ],
   "endpoints": {
+    "/api/v1/projects": {
+      "actions": {
+        "index": {
+          "resource": "ProjectResource"
+        },
+        "show": {
+          "resource": "ProjectResource"
+        },
+        "create": {
+          "resource": "ProjectResource"
+        },
+        "update": {
+          "resource": "ProjectResource"
+        },
+        "destroy": {
+          "resource": "ProjectResource"
+        }
+      }
+    },
+    "/api/v1/todo_list_items": {
+      "actions": {
+        "index": {
+          "resource": "TodoListItemResource"
+        },
+        "show": {
+          "resource": "TodoListItemResource"
+        },
+        "create": {
+          "resource": "TodoListItemResource"
+        },
+        "update": {
+          "resource": "TodoListItemResource"
+        },
+        "destroy": {
+          "resource": "TodoListItemResource"
+        }
+      }
+    },
+    "/api/v1/todo_lists": {
+      "actions": {
+        "index": {
+          "resource": "TodoListResource"
+        },
+        "show": {
+          "resource": "TodoListResource"
+        },
+        "create": {
+          "resource": "TodoListResource"
+        },
+        "update": {
+          "resource": "TodoListResource"
+        },
+        "destroy": {
+          "resource": "TodoListResource"
+        }
+      }
+    }
   },
   "types": {
     "integer_id": {
