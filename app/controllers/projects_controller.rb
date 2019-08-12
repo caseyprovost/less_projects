@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
     project = ProjectResource.find(params)
 
     if project.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: {meta: {}}, status: 200
     else
       render jsonapi_errors: project
     end

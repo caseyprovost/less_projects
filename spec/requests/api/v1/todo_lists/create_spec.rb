@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "todo_lists#create", type: :request do
   let!(:project) { create(:project) }
@@ -7,27 +7,27 @@ RSpec.describe "todo_lists#create", type: :request do
     jsonapi_post "/api/v1/todo_lists", payload
   end
 
-  describe 'basic create' do
+  describe "basic create" do
     let(:params) { attributes_for(:todo_list) }
 
     let(:payload) do
       {
         data: {
-          type: 'todo_lists',
+          type: "todo_lists",
           attributes: params,
           relationships: {
             project: {
               data: {
-                type: 'projects',
-                id: project.id
-              }
-            }
-          }
-        }
+                type: "projects",
+                id: project.id,
+              },
+            },
+          },
+        },
       }
     end
 
-    it 'works' do
+    it "works" do
       expect(TodoListResource).to receive(:build).and_call_original
       expect { make_request }.to change { TodoList.count }.by(1)
       expect(response.status).to eq(201)

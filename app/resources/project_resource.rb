@@ -4,8 +4,8 @@ class ProjectResource < ApplicationResource
       if value
         scope.joins(:todo_lists)
       else
-        scope.left_joins(:todo_lists).
-          where("todo_lists.id is null")
+        scope.left_joins(:todo_lists)
+          .where("todo_lists.id is null")
       end
     end
   end

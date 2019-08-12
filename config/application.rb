@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -26,12 +26,12 @@ module LessProjects
     # the rails server settings.
     # Rails::Server is not defined in console or rake tasks, so this will only
     # use those defaults when they are available.
-    routes.default_url_options[:host] = ENV.fetch('HOST') do
+    routes.default_url_options[:host] = ENV.fetch("HOST") {
       if defined?(Rails::Server)
         argv_options = Rails::Server::Options.new.parse!(ARGV)
         "http://#{argv_options[:Host]}:#{argv_options[:Port]}"
       end
-    end
+    }
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

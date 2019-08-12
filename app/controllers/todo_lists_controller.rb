@@ -33,7 +33,7 @@ class TodoListsController < ApplicationController
     todo_list = TodoListResource.find(params)
 
     if todo_list.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: {meta: {}}, status: 200
     else
       render jsonapi_errors: todo_list
     end

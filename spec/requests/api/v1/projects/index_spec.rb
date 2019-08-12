@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "projects#index", type: :request do
   let(:params) { {} }
@@ -7,15 +7,15 @@ RSpec.describe "projects#index", type: :request do
     jsonapi_get "/api/v1/projects", params: params
   end
 
-  describe 'basic fetch' do
+  describe "basic fetch" do
     let!(:project1) { create(:project) }
     let!(:project2) { create(:project) }
 
-    it 'works' do
+    it "works" do
       expect(ProjectResource).to receive(:all).and_call_original
       make_request
       expect(response.status).to eq(200), response.body
-      expect(jsonapi_data.map(&:jsonapi_type).uniq).to match_array(['projects'])
+      expect(jsonapi_data.map(&:jsonapi_type).uniq).to match_array(["projects"])
       expect(jsonapi_data.map(&:id)).to match_array([project1.id, project2.id])
     end
   end
