@@ -43,7 +43,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "graphiti"
 gem "graphiti-rails"
 gem "vandal_ui"
-gem "kaminari", "~> 1.0"
+gem "kaminari", "~> 1.2"
 gem "responders", "~> 2.4"
 
 group :development, :test do
